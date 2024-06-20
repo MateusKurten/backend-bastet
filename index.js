@@ -16,6 +16,7 @@ app.use(cors({
 app.use(express.json());
 app.use(cookieParser());
 
+app.get("/", (req, res) => res.send("Express on Vercel"));
 app.get("/cursos", cursoController.getCursos);
 app.get("/:idUsuario", auth, cursoController.getCursos);
 app.post("/cursos/:idCurso", auth, alunoController.realizarInscricao);
