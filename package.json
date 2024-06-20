@@ -2,7 +2,7 @@
   "name": "backend-bastet",
   "description": "Backend for Bastet Courses App",
   "scripts": {
-    "vercel build": "echo building",
+    "vercel-build": "echo building",
     "start": "vercel dev"
   },
   "engines": {
