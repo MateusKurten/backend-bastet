@@ -6,7 +6,7 @@ const getCursos = async (req, res) => {
         const timestamp = new Date().toISOString().replace('T', ' ').replace('Z', '');
         const filtro = req.query.filtro ? `%${req.query.filtro}%` : null;
 
-        const aluno = jwt.verify(req.cookies.jwt, process.env.JWT_SECRET, (err, a) => {
+        const aluno = jwt.verify(req.query.jwt, process.env.JWT_SECRET, (err, a) => {
             if (err) {
                 return 0;
             } else {
