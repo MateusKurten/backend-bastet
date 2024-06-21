@@ -10,7 +10,7 @@ const { auth } = require('./middleware/auth');
 const port = 3333;
 
 app.use(cors({
-    origin: 'https://front-bastet-one.vercel.app/',
+    origin: 'https://front-bastet-one.vercel.app',
     credentials: true
 }));
 app.use(express.json());
