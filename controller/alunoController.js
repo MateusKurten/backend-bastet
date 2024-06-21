@@ -94,7 +94,8 @@ const cancelarInscricao = async (req, res) => {
             res.status(404).json({message: "Curso não existe!"})
         }
 
-        const dataCancelamento = new Date();
+        let dataCancelamento = new Date();
+        dataCancelamento.setHours(dataCancelamento.getHours() - 3);
 
         await sql`UPDATE aluno_curso_bastet SET 
             cancelado = 1,
