@@ -1,9 +1,9 @@
 const jwt = require("jsonwebtoken");
 
 async function auth(req, res, next) {
-    const jwt = req.body.jwt ?? (req.query.jwt ?? '');
-    if (jwt) {
-        jwt.verify(jwt, process.env.JWT_SECRET, (err, aluno) => {
+    const jwtToken = req.body.jwt ?? (req.query.jwt ?? '');
+    if (jwtToken) {
+        jwt.verify(jwtToken, process.env.JWT_SECRET, (err, aluno) => {
             if (err) {
                 return res.status(403).json({message: "Login inválido!"});
             } else {
