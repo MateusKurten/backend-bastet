@@ -10,7 +10,6 @@ const { auth } = require('./middleware/auth');
 const port = 3333;
 
 app.use(cors({
-    origin: '*',
     credentials: true
 }));
 app.use(express.json());
