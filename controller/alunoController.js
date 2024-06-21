@@ -94,7 +94,18 @@ const cancelarInscricao = async (req, res) => {
             res.status(404).json({message: "Curso não existe!"})
         }
 
-        await sql`UPDATE aluno_curso_bastet SET cancelado = 1 WHERE id_aluno = ${req.aluno.id} AND id_curso = ${curso.rows[0].id}`;
+        const dataCancelamento = new Date();
+        const horas = dataCancelamento.getHours();
+        const minutos = dataCancelamento.getMinutes();
+        const segundos = dataCancelamento.getSeconds();
+        const horaAtual = `${horas.toString().padStart(2, '0')}:${minutos.toString().padStart(2, '0')}:${segundos.toString().padStart(2, '0')}`;
+
+        await sql`UPDATE aluno_curso_bastet SET 
+            cancelado = 1,
+            data_cancelamento = ${dataCancelamento.toISOString()},
+            hora_cancelamento= ${horaAtual}
+            WHERE id_aluno = ${req.aluno.id} 
+            AND id_curso = ${curso.rows[0].id}`;
 
         res.status(200).json({ message: 'Inscrição cancelada com sucesso!' });
     } catch (error) {
