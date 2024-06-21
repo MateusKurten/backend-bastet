@@ -31,7 +31,12 @@ const login = async (req, res) => {
     }
 
     const token = jwt.sign({id: aluno.id}, process.env.JWT_SECRET, { expiresIn: "1h" });
-    res.cookie('jwt', token, { httpOnly: true, domain: process.env.NODE_ENV === 'development' ? '.localhost' : '.vercel.app' });
+    res.cookie('jwt', token, {
+        httpOnly: true,
+        domain: process.env.NODE_ENV === 'development' ? 'localhost' : 'front-bastet-one.vercel.app',
+        sameSite: 'none'
+    });
+
     return res.status(200).json({
         message: "Login realizado com sucesso!",
         token: token,
